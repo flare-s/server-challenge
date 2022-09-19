@@ -31,6 +31,10 @@ server.get("/colour", (req, res) => {
         </head>
         <body>
         <h1>Hello Express</h1>
+        <form method="get" action="/colour">
+            <label for="hex">Insert a hex value</label>
+            <input type="text" name="hex" id="hex"/>
+        </form>
         </body>
     </html>`);
 });
