@@ -2,6 +2,10 @@ const express = require("express");
 
 const server = express();
 
+const bodyParser = express.urlencoded();
+
+const cheeseInfo = [];
+
 server.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -41,6 +45,10 @@ server.get("/colour", (req, res) => {
 });
 
 server.get("/cheese", (req, res) => {
+  const cheeseItems = cheeseInfo.map(
+    (cheese) => `<li>${cheese.name} | ${cheese.rating} stars</li>`
+  );
+  const cheeseList = `<ul>${cheeseItems.join("")}</ul>`;
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -51,12 +59,22 @@ server.get("/cheese", (req, res) => {
         <body>
         <form method="POST" action="/cheese">
             <label for="cheese-name">Cheese name</label>
-            <input type="text" name="cheeseName" id="cheese-name"/>
+            <input type="text" name="name" id="cheese-name"/>
             <label for="cheese-rate">Cheese rate</label>
-            <input type="range" min="0" max="5" name="cheeseRate" id="cheese-rate"/>
+            <input type="range" min="0" max="5" name="rating" id="cheese-rate"/>
         </form>
+        ${cheeseList}
         </body>
     </html>`);
+});
+
+server.post("/cheese", bodyParser, (req, res) => {
+  const newCheese = {
+    name: req.body.name,
+    rating: req.body.rating,
+  };
+  cheeseInfo.push(newCheese);
+  res.redirect(`/cheese`);
 });
 
 module.exports = server;
