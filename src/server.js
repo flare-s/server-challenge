@@ -16,4 +16,23 @@ server.get("/", (req, res) => {
     </html>`);
 });
 
+server.get("/colour", (req, res) => {
+  const hex = req.query.hex || "ffffff";
+  res.send(`
+    <html>
+        <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+        <style>
+            body {
+                background-color: #${hex};
+            }
+        </style>
+        </head>
+        <body>
+        <h1>Hello Express</h1>
+        </body>
+    </html>`);
+});
+
 module.exports = server;
