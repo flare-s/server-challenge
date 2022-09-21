@@ -6,6 +6,7 @@ const bodyParser = express.urlencoded();
 
 const cheeseInfo = [];
 
+// Challenge 1
 server.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -19,6 +20,8 @@ server.get("/", (req, res) => {
         </body>
     </html>`);
 });
+
+// Challenge 2 & 3
 
 server.get("/colour", (req, res) => {
   const hex = req.query.hex || "ffffff";
@@ -44,6 +47,8 @@ server.get("/colour", (req, res) => {
     </html>`);
 });
 
+// Challenge 4
+
 server.get("/cheese", (req, res) => {
   const cheeseItems = cheeseInfo.map(
     (cheese) => `<li>${cheese.name} | ${cheese.rating} stars</li>`
@@ -67,6 +72,8 @@ server.get("/cheese", (req, res) => {
         </body>
     </html>`);
 });
+
+// Challenge 4
 
 server.post("/cheese", bodyParser, (req, res) => {
   const newCheese = {

@@ -10,7 +10,8 @@
     "test:5": "node --no-warnings test/5.test.js"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "heroku": "^7.63.4"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
